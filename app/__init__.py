@@ -13,4 +13,12 @@ def create_app():
 
     app = Flask(__name__)
 
+    # Import do blueprint para add a aplicação.
+    from .auth import auth as auth_blueprint
+    """
+        O url_prefix é opcional, mas se definido fará com que 
+        os urls do blueprint, tenham um prefixo.
+    """
+    app.register_blueprint(auth_blueprint, url_prefix="/auth")
+
     return app
