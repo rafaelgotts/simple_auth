@@ -8,9 +8,16 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
+"""
+    Import do objeto login_manager...aqui? Será que é isso 
+    que significa add ao "factory"?.
+"""
+from . import login_manager
+
 db = SQLAlchemy()
 
-class User(db.Model):
+
+class User(UserMixin, db.Model):
     """
            Classe que será usada para os usuários que 
         autenticarão na aplicação.
@@ -83,3 +90,14 @@ class User(db.Model):
         """
         return check_password_hash(self.password_hash, password)
 
+
+
+
+"""
+    Definição do callback obrigatório ao uso do FLask-login.
+    Função deve receber um identificador e caso o usuário exista,
+    retorne o Usuário, caso contrário retorne None.
+"""
+@login_manager.user_loader
+def load_user(user_id):
+  return User.query.get(int(user_id))
