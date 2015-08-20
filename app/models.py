@@ -4,7 +4,6 @@
 # Retirado do livro Flask Web Development, do Miguel Grinberg
 # 2015.08.18
 
-from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -12,9 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
     Import do objeto login_manager...aqui? Será que é isso 
     que significa add ao "factory"?.
 """
-from . import login_manager
-
-db = SQLAlchemy()
+from . import login_manager, db
 
 
 class User(UserMixin, db.Model):

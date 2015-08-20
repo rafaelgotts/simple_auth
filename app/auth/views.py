@@ -8,4 +8,4 @@ from . import auth
 # Cria uma rota no blueprint para /login
 @auth.route("/login")
 def login():
-    return render_template("auth/login.html")
+    return render_template('auth/login.html')

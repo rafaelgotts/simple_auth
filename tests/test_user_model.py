@@ -5,7 +5,6 @@
 # 2015.08.18
 
 import unittest
-from flask import current_app
 
 """
    O import está sendo direto, e não criando através
